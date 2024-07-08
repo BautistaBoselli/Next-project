@@ -33,10 +33,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <main
           className={`flex min-h-screen w-full flex-col bg-slate-100 font-sans ${inter.variable}`}
         >
-          <Navbar />
+          {/* <Navbar /> */}
           <Component {...pageProps} />
         </main>
-        <Script src="/start-workers.js" />
+        {/* <Script src="/start-workers.js" /> */}
       </QueryClientProvider>
     </SessionProvider>
   );
