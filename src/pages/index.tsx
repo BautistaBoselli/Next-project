@@ -1,27 +1,12 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { useNotification } from "@/hooks/use-notification";
+
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { useState } from "react";
 import type { DogFact } from "./api/dog-fact";
 
 export default function Home() {
