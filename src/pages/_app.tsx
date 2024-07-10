@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
 import { Navbar } from "@/components/navbar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         >
           {/* <Navbar /> */}
           <Component {...pageProps} />
+          <Toaster />
         </main>
         {/* <Script src="/start-workers.js" /> */}
       </QueryClientProvider>
