@@ -31,7 +31,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <main
-          className={`flex min-h-screen w-full flex-col bg-slate-100 font-sans ${inter.variable}`}
+          className={`flex min-h-screen w-full flex-col bg-zinc-900 font-sans ${inter.variable}`}
         >
           {/* <Navbar /> */}
           <Component {...pageProps} />
