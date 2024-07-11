@@ -19,6 +19,8 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState<CreateResponse>(undefined);
+  const [registering, setRegistering] = useState(false);
+  const [phone, setPhone] = useState("");
 
   //Esto lo hice para simular mejor pero en realidad se puede verificar en el front
   const handleSubmit = () => {
@@ -48,53 +50,117 @@ export default function SignIn() {
           <img src="/images/logo.png" alt="logo" className="w-40" />
         </nav>
         <div className="flex h-screen flex-col items-center justify-start">
-          <Card className="w-full max-w-sm rounded-sm border-black bg-black lg:bg-opacity-70">
-            <CardHeader>
-              <CardTitle className="px-4 text-3xl text-white">
-                Sign In
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form>
-                <div className="grid w-full items-center gap-4 px-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Input
-                      id="name"
-                      placeholder="Email"
-                      className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+          {registering ? (
+            <Card className="w-full max-w-sm rounded-sm border-black bg-black lg:bg-opacity-70">
+              <CardHeader>
+                <CardTitle className="px-4 text-3xl text-white">
+                  Register
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form>
+                  <div className="grid w-full items-center gap-4 px-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Input
+                        id="email"
+                        placeholder="Email"
+                        className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                      <Input
+                        id="password"
+                        placeholder="Password"
+                        className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                      <Input
+                        id="phone"
+                        placeholder="Phone"
+                        className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col space-y-1.5">
-                    <Input
-                      id="name"
-                      placeholder="Password"
-                      className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+                </form>
+              </CardContent>
+              <CardFooter className="flex flex-col px-10">
+                <Button
+                  className="w-full max-w-sm bg-red-600 hover:bg-red-700"
+                  variant="default"
+                  onClick={() => handleSubmit()}
+                >
+                  Register
+                </Button>
+                <p className="mt-4 flex w-96 items-center gap-1 pl-8 text-sm text-slate-600">
+                  Already have an account?
+                  <button
+                    className="font-semibold text-white"
+                    onClick={() => setRegistering(false)}
+                  >
+                    Sign in to your account
+                  </button>
+                </p>
+              </CardFooter>
+            </Card>
+          ) : (
+            <Card className="w-full max-w-sm rounded-sm border-black bg-black lg:bg-opacity-70">
+              <CardHeader>
+                <CardTitle className="px-4 text-3xl text-white">
+                  Sign In
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form>
+                  <div className="grid w-full items-center gap-4 px-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Input
+                        id="name"
+                        placeholder="Email"
+                        className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                      <Input
+                        id="name"
+                        placeholder="Password"
+                        className="h-12 border-slate-700 text-lg text-white focus:border-slate-200"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
-              </form>
-            </CardContent>
-            <CardFooter className="flex flex-col px-10">
-              <Button
-                className="w-full max-w-sm bg-red-600 hover:bg-red-700"
-                variant="default"
-                onClick={() => handleSubmit()}
-              >
-                Sign In
-              </Button>
-              <p className="mt-4 flex items-center gap-1 text-sm text-slate-600">
-                First time using Netflix?
-                <span className="font-semibold text-white">
-                  {" "}
-                  Create an account{" "}
-                </span>
-              </p>
-            </CardFooter>
-          </Card>
+                </form>
+              </CardContent>
+              <CardFooter className="flex flex-col px-10">
+                <Button
+                  className="w-full max-w-sm bg-red-600 hover:bg-red-700"
+                  variant="default"
+                  onClick={() => handleSubmit()}
+                >
+                  Sign In
+                </Button>
+                <p className="mt-4 flex items-center gap-1 text-sm text-slate-600">
+                  First time using Netflix?
+                  <button
+                    className="font-semibold text-white"
+                    onClick={() => setRegistering(true)}
+                  >
+                    {" "}
+                    Create an account{" "}
+                  </button>
+                </p>
+              </CardFooter>
+            </Card>
+          )}
           {response?.success === false && (
             <div className="mt-4 w-96 rounded-sm border border-red-600 bg-black p-4 text-sm font-semibold lg:border-black lg:bg-opacity-70">
               <ul className="list-inside list-disc text-red-600">
